@@ -4,20 +4,21 @@ import rsa
 
 def Encryption(message):
     # open the symmetric key file
-    skey = open('messageKey.key', 'rb')
-    key = skey.read()
+    with open('messageKey.key', 'rb') as skey:
+        key = skey.read()
 
     # create the cipher
     cipher = Fernet(key)
 
     # encrypt the data
     encrypted_data = cipher.encrypt(bytes(message, 'utf-8'))
-    edata = open('EncryptedFile', 'wb')
-    edata.write(encrypted_data)
+
+    with open('EncryptedFile', 'wb') as edata:
+        edata.write(encrypted_data)
 
     # open the public key file
-    pkey = open('publicKey.key', 'rb')
-    pkdata = pkey.read()
+    with open('publicKey.key', 'rb') as pkey:
+        pkdata = pkey.read()
 
     # load the file
     pubkey = rsa.PublicKey.load_pkcs1(pkdata)
@@ -25,5 +26,5 @@ def Encryption(message):
     # encrypt the symmetric key file with the public key
     encrypted_key = rsa.encrypt(key, pubkey)
 
-    ekey = open('encryptedMessageKey', 'wb')
-    ekey.write(encrypted_key)
+    with open('encryptedMessageKey', 'wb') as ekey:
+        ekey.write(encrypted_key)

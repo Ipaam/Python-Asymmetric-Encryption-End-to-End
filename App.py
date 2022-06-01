@@ -18,11 +18,11 @@ class App:
 
 
         
-#Create Keys using this        
-#App.KeysCreation()
+# Create Keys using this
+App.KeysCreation()
 
-#Once Keys Created, Encrypt Data using this 
-#App.DataEncryption("Heelllo My Name is Abhisht from App.py!!!")
+# Once Keys Created, Encrypt Data using this
+App.DataEncryption("Hi danial!!!")
 
-#The Encrypted data can be Decrypted using this
-#App.DataDecryption()
+# The Encrypted data can be Decrypted using this
+App.DataDecryption()

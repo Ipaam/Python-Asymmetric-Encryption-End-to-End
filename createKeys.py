@@ -7,19 +7,16 @@ def KeyGeneration():
     key = Fernet.generate_key()
 
     # write the symmetric key to a file
-    k = open('messageKey.key', 'wb')
-    k.write(key)
-    k.close()
+    with open('symmetricKey.key', 'wb') as sk:
+        sk.write(key)
 
     # create the pub & private keys
     (pubkey, privkey) = rsa.newkeys(2048)
 
     # write the public key to a file
-    pukey = open('publicKey.key', 'wb')
-    pukey.write(pubkey.save_pkcs1('PEM'))
-    pukey.close()
+    with open('publicKey.key', 'wb') as pukey:
+        pukey.write(pubkey.save_pkcs1('PEM'))
 
     # write the private key to a file
-    prkey = open('privateKey.key', 'wb')
-    prkey.write(privkey.save_pkcs1('PEM'))
-    prkey.close()
+    with open('privateKey.key', 'wb') as prkey:
+        prkey.write(privkey.save_pkcs1('PEM'))

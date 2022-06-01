@@ -8,15 +8,14 @@ def Decryption():
     pkey = prkey.read()
     private_key = rsa.PrivateKey.load_pkcs1(pkey)
 
-    e = open('encryptedMessageKey', 'rb')
-    ekey = e.read()
+    with open('encryptedMessageKey', 'rb') as e:
+        ekey = e.read()
 
     dpubkey = rsa.decrypt(ekey, private_key)
-
     cipher = Fernet(dpubkey)
 
-    encrypted_data = open('EncryptedFile', 'rb')
-    edata = encrypted_data.read()
+    with open('EncryptedFile', 'rb') as encrypted_data:
+        edata = encrypted_data.read()
 
     decrypted_data = cipher.decrypt(edata)
 
